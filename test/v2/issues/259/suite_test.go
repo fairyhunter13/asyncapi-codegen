@@ -7,9 +7,9 @@ import (
 	"encoding/json"
 	"testing"
 
+	issue259default "github.com/fairyhunter13/asyncapi-codegen/test/v2/issues/259/default"
+	issue259forcepointers "github.com/fairyhunter13/asyncapi-codegen/test/v2/issues/259/forcepointers"
 	"github.com/go-playground/validator/v10"
-	issue259default "github.com/lerenn/asyncapi-codegen/test/v2/issues/259/default"
-	issue259forcepointers "github.com/lerenn/asyncapi-codegen/test/v2/issues/259/forcepointers"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )

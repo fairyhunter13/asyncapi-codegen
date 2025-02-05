@@ -4,7 +4,7 @@ import (
 	"asyncapi-codegen/ci/dagger/internal/dagger"
 	"fmt"
 
-	testutil "github.com/lerenn/asyncapi-codegen/pkg/utils/test"
+	testutil "github.com/fairyhunter13/asyncapi-codegen/pkg/utils/test"
 )
 
 const (

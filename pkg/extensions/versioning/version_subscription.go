@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/lerenn/asyncapi-codegen/pkg/extensions"
-	"github.com/lerenn/asyncapi-codegen/pkg/extensions/brokers"
+	"github.com/fairyhunter13/asyncapi-codegen/pkg/extensions"
+	"github.com/fairyhunter13/asyncapi-codegen/pkg/extensions/brokers"
 )
 
 type versionSubcription struct {

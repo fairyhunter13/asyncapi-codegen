@@ -3,7 +3,7 @@ package generatorv3
 import (
 	"bytes"
 
-	asyncapi "github.com/lerenn/asyncapi-codegen/pkg/asyncapi/v3"
+	asyncapi "github.com/fairyhunter13/asyncapi-codegen/pkg/asyncapi/v3"
 )
 
 // TypesGenerator is a code generator for types that will generate all schemas

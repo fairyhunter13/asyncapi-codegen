@@ -6,11 +6,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/lerenn/asyncapi-codegen/examples"
-	"github.com/lerenn/asyncapi-codegen/pkg/extensions/brokers/kafka"
-	"github.com/lerenn/asyncapi-codegen/pkg/extensions/loggers"
-	"github.com/lerenn/asyncapi-codegen/pkg/extensions/middlewares"
-	testutil "github.com/lerenn/asyncapi-codegen/pkg/utils/test"
+	"github.com/fairyhunter13/asyncapi-codegen/examples"
+	"github.com/fairyhunter13/asyncapi-codegen/pkg/extensions/brokers/kafka"
+	"github.com/fairyhunter13/asyncapi-codegen/pkg/extensions/loggers"
+	"github.com/fairyhunter13/asyncapi-codegen/pkg/extensions/middlewares"
+	testutil "github.com/fairyhunter13/asyncapi-codegen/pkg/utils/test"
 )
 
 var _ AppSubscriber = (*Subscriber)(nil)

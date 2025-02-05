@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/lerenn/asyncapi-codegen/pkg/codegen/options"
+	"github.com/fairyhunter13/asyncapi-codegen/pkg/codegen/options"
 	"github.com/spf13/cobra"
 )
 
