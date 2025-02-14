@@ -6,6 +6,7 @@ toolchain go1.21.4
 
 require (
 	cloud.google.com/go v0.114.0
+	github.com/fairyhunter13/reflecthelper/v5 v5.1.4
 	github.com/fatih/color v1.15.0
 	github.com/ghodss/yaml v1.0.0
 	github.com/go-playground/validator/v10 v10.20.0
@@ -27,7 +28,9 @@ require (
 )
 
 require (
+	github.com/Popog/deepcopy v0.0.0-20160519164043-14c73c14458b // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/fairyhunter13/task/v2 v2.0.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
@@ -36,10 +39,13 @@ require (
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/nats-io/nkeys v0.4.6 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
+	github.com/panjf2000/ants v1.3.0 // indirect
 	github.com/pierrec/lz4/v4 v4.1.17 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/reiver/go-cast v0.0.0-20210208184015-0ace357373b2 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect

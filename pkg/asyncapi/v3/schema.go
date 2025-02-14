@@ -1,8 +1,12 @@
 package asyncapiv3
 
 import (
+	"fmt"
+	"github.com/fairyhunter13/reflecthelper/v5"
 	"github.com/lerenn/asyncapi-codegen/pkg/asyncapi"
 	"github.com/lerenn/asyncapi-codegen/pkg/utils"
+	"reflect"
+	"strings"
 )
 
 // SchemaType is a structure that represents the type of a field.
@@ -296,6 +300,7 @@ func (s *Schema) setReference(spec Specification) error {
 		return err
 	}
 	s.ReferenceTo = refTo
+	s.Validations.Merge(refTo.Validations)
 
 	return nil
 }
@@ -407,6 +412,58 @@ func (s *Schema) mergeWithSchemaOneOf(s2 Schema) {
 	}
 }
 
+func (s *Schema) resolveType() string {
+	if s.Type == "object" {
+		return fmt.Sprintf("object:%s", s.resolveName())
+	}
+
+	if s.Type == "array" {
+		return fmt.Sprintf("array:%s", s.Items.resolveType())
+	}
+
+	if s.Type != "" {
+		return s.Type
+	}
+
+	if s.ReferenceTo != nil {
+		return s.ReferenceTo.resolveType()
+	}
+
+	return ""
+}
+
+func (s *Schema) resolveName() string {
+	if s.Name != "" {
+		return s.Name
+	}
+
+	if s.ReferenceTo != nil {
+		return s.ReferenceTo.resolveName()
+	}
+
+	return s.Name
+
+}
+
+func (s *Schema) haveTheSameType(s2 *Schema) bool {
+	return s.resolveType() == s2.resolveType()
+}
+
+func (s *Schema) clone() *Schema {
+	return reflecthelper.Clone(reflect.ValueOf(s)).Interface().(*Schema)
+}
+
+func (s *Schema) setExtGoTypeAsInterface(sKey string, sProperty *Schema, s2 Schema, s2Property *Schema) {
+	if sProperty.haveTheSameType(s2Property) || !strings.Contains(s2.resolveName(), "OneOf") {
+		return
+	}
+
+	clonedProperty := sProperty.clone()
+	clonedProperty.IsRequired = sProperty.IsRequired && s2Property.IsRequired
+	clonedProperty.ExtGoType = "interface{}"
+	s.Properties[sKey] = clonedProperty
+}
+
 func (s *Schema) mergeWithSchemaProperties(s2 Schema) {
 	// Return if there are no properties to merge
 	if s2.Properties == nil && (s2.ReferenceTo == nil || s2.ReferenceTo.Properties == nil) {
@@ -420,8 +477,9 @@ func (s *Schema) mergeWithSchemaProperties(s2 Schema) {
 
 	// Add properties from s2 to s
 	for k, v := range s2.Properties {
-		_, exists := s.Properties[k]
+		originProperty, exists := s.Properties[k]
 		if exists {
+			s.setExtGoTypeAsInterface(k, originProperty, s2, v)
 			continue
 		}
 
@@ -441,8 +499,9 @@ func (s *Schema) mergeWithSchemaReferenceProperties(s2 Schema) {
 	// Add properties from s2 reference to s
 	for k, v := range s2.ReferenceTo.Properties {
 		// Skip if the property already exists
-		_, exists := s.Properties[k]
+		originProperty, exists := s.Properties[k]
 		if exists {
+			s.setExtGoTypeAsInterface(k, originProperty, s2, v)
 			continue
 		}
 

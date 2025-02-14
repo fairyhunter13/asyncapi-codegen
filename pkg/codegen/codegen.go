@@ -72,7 +72,8 @@ func modulePathVersion() (path, version string) {
 			path = bi.Main.Path
 		}
 		if bi.Main.Version != "" {
-			version = bi.Main.Version
+			//version = bi.Main.Version
+			version = "v0.45.1"
 		}
 	}
 
